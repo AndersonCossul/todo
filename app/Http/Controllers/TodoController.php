@@ -37,8 +37,7 @@ class TodoController extends Controller
         }
     }
 
-    public
-    function postUpdate(StoreTodo $request, $id)
+    public function postUpdate(StoreTodo $request, $id)
     {
         // again using custom request validation in StoreTodo
         try {
