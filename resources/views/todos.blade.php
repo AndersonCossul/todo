@@ -7,16 +7,18 @@
             <form action="{{ route('todo.store') }}" method="post">
                 {{ csrf_field() }}
                 <input name="todo" placeholder="Create new Todo" autofocus class="form-control input-lg">
+                @if ($errors->has('todo'))
+                    <p class="alert-warning">{{ $errors->first('todo') }}</p>
+                @endif
             </form>
         </div>
     </div>
 
     <br/><br/>
 
-    @foreach($todos as $todo)
+    @foreach ($todos as $todo)
         <hr>
         <p>{{ $todo->todo }}</p>
-        @endforeach
-        </div>
+    @endforeach
 
 @endsection

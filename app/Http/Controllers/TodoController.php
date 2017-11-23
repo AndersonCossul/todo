@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreNewTodo;
 use App\Models\Todo;
 
 class TodoController extends Controller
@@ -10,14 +10,12 @@ class TodoController extends Controller
     public function index()
     {
         $todos = Todo::all()->sortByDesc('created_at');
-
         return view('todos')->with('todos', $todos);
     }
 
-    public function store(Request $request)
+    public function store(StoreNewTodo $request)
     {
         $todo = new Todo;
-        // column todo from table gets the input named todo in request
         $todo->todo = $request->todo;
         $todo->save();
 
