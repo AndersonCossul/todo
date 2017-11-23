@@ -6,7 +6,7 @@
         <div class="col-lg-12">
             <form action="{{ route('todo.store') }}" method="post">
                 {{ csrf_field() }}
-                <input name="todo" placeholder="Create new Todo" class="form-control input-lg">
+                <input name="todo" placeholder="Create new Todo" autofocus class="form-control input-lg">
             </form>
         </div>
     </div>
