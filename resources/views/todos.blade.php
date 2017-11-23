@@ -1,9 +1,9 @@
 @extends('layout.master')
-
+@section('title', 'Todos')
 @section('content')
 
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6 mt-5 col-centered">
             <form action="{{ route('todo.store') }}" method="post">
                 {{ csrf_field() }}
                 <input name="todo" placeholder="Create new Todo" autofocus class="form-control input-lg">
