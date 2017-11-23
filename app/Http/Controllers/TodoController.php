@@ -15,6 +15,7 @@ class TodoController extends Controller
 
     public function store(StoreNewTodo $request)
     {
+        // it will just fall here if the validation passed in StoreNewTodo
         $todo = new Todo;
         $todo->todo = $request->todo;
         $todo->save();
@@ -28,6 +29,15 @@ class TodoController extends Controller
         if ($todo)
             $todo->delete();
 
+        return redirect()->back();
+    }
+
+    public function getUpdate($id)
+    {
+        $todo = Todo::find($id);
+        if ($todo)
+            return view('update')->with('todo', $todo);
+        session()->put('error','Todo not found!');
         return redirect()->back();
     }
 }
