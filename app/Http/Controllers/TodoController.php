@@ -21,4 +21,13 @@ class TodoController extends Controller
 
         return redirect()->back();
     }
+
+    public function delete($id)
+    {
+        $todo = Todo::find($id);
+        if ($todo)
+            $todo->delete();
+
+        return redirect()->back();
+    }
 }

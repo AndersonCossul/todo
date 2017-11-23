@@ -18,7 +18,7 @@
 
     @foreach ($todos as $todo)
         <hr>
-        <p>{{ $todo->todo }}</p>
+        <p>{{ $todo->todo }} <a href="{{ route('todo.delete', ['id' => $todo->id]) }}" class="btn btn-danger">x</a></p>
     @endforeach
 
 @endsection
