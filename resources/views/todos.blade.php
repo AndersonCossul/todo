@@ -25,9 +25,9 @@
             </div>
             <div class="col-sm-4">
                 @if (!$todo->completed)
-                    <a href="{{ route('todo.markcompleted', ['id' => $todo->id]) }}" class="btn btn-success">Mark as Completed</a>
+                    <a href="{{ route('todo.markcompletedstate', ['id' => $todo->id, 'state' => '1']) }}" class="btn btn-success">Mark as Completed</a>
                 @else
-                    <a href="{{ route('todo.marknotcompleted', ['id' => $todo->id]) }}" class="btn btn-warning">Mark as Not Completed</a>
+                    <a href="{{ route('todo.markcompletedstate', ['id' => $todo->id, 'state' => '0']) }}" class="btn btn-warning">Mark as Not Completed</a>
                 @endif
                 <a href="{{ route('todo.edit', ['id' => $todo->id]) }}" class="btn btn-info">Update</a>
                 <a href="{{ route('todo.delete', ['id' => $todo->id]) }}" class="btn btn-danger">x</a>

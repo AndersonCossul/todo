@@ -55,26 +55,11 @@ class TodoController extends Controller
         }
     }
 
-    public function markAsCompleted($id)
+    public function markCompletedState($id, $state)
     {
         try {
             $todo = Todo::findOrFail($id);
-            $todo->completed = 1;
-            $todo->save();
-
-            session()->flash('success', 'Marked as completed!');
-        } catch (ModelNotFoundException $e) {
-            session()->flash('error', 'Todo not found!');
-        } finally {
-            return redirect()->back();
-        }
-    }
-
-    public function markAsNotCompleted($id)
-    {
-        try {
-            $todo = Todo::findOrFail($id);
-            $todo->completed = 0;
+            $todo->completed = $state;
             $todo->save();
 
             session()->flash('success', 'Marked as completed!');
