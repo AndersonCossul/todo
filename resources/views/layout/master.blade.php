@@ -17,6 +17,7 @@
             height: 100vh;
             margin: 0;
             text-align: center;
+            overflow-x: hidden;
         }
 
         button {
