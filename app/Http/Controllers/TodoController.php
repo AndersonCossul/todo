@@ -18,7 +18,7 @@ class TodoController extends Controller
         // it will just fall here if the validation passed in StoreTodo
         $todo = Todo::create($request->all());
 
-        session()->put('success', 'Successfully created!');
+        session()->flash('success', 'Successfully created!');
 
         return redirect()->back();
     }
@@ -30,7 +30,7 @@ class TodoController extends Controller
             return view('update')->with('todo', $todo);
 
         } catch (ModelNotFoundException $e) {
-            session()->put('error', 'Todo not found!');
+            session()->flash('error', 'Todo not found!');
             return redirect()->back();
         }
     }
@@ -44,12 +44,12 @@ class TodoController extends Controller
             $todo->todo = $request->todo;
             $todo->save();
 
-            session()->put('success', 'Successfully updated!');
+            session()->flash('success', 'Successfully updated!');
 
             return redirect()->route('home');
 
         } catch (ModelNotFoundException $e) {
-            session()->put('error', 'Todo not found!');
+            session()->flash('error', 'Todo not found!');
             return redirect()->back();
         }
     }
@@ -59,9 +59,9 @@ class TodoController extends Controller
         try {
             $todo = Todo::findOrFail($id);
             $todo->delete();
-            session()->put('success', 'Successfully deleted!');
+            session()->flash('success', 'Successfully deleted!');
         } catch (ModelNotFoundException $e) {
-            session()->put('error', 'Todo not found!');
+            session()->flash('error', 'Todo not found!');
         } finally {
             return redirect()->back();
         }

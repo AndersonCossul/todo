@@ -8,7 +8,7 @@
                 {{ csrf_field() }}
                 <input name="todo" placeholder="Create new Todo" autofocus class="form-control input-lg">
                 @if ($errors->has('todo'))
-                    <p class="alert-warning">{{ $errors->first('todo') }}</p>
+                    <p class="alert-danger">{{ $errors->first('todo') }}</p>
                 @endif
             </form>
         </div>

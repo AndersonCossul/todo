@@ -38,15 +38,9 @@
 <script>
     @if(Session::has('success'))
         $.notify('{{ Session::get('success') }}', 'success')
-        @php
-            Session::forget('success');
-        @endphp
     @endif
     @if(Session::has('error'))
         $.notify('{{ Session::get('error') }}', 'error')
-        @php
-            Session::forget('error');
-        @endphp
     @endif
 </script>
 </body>
