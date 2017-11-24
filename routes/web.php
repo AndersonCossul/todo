@@ -20,6 +20,16 @@ Route::patch('/todo/update/{id}', [
     'as'    =>  'todo.update'
 ]);
 
+Route::get('/todo/mark-completed/{id}', [
+    'uses'  =>  'TodoController@markAsCompleted',
+    'as'    =>  'todo.markcompleted'
+]);
+
+Route::get('/todo/mark-not-completed/{id}', [
+    'uses'  =>  'TodoController@markAsNotCompleted',
+    'as'    =>  'todo.marknotcompleted'
+]);
+
 Route::get('/todo/delete/{id}', [
     'uses'  =>  'TodoController@destroy',
     'as'    =>  'todo.delete'

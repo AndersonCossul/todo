@@ -16,12 +16,22 @@
 
     <br/><br/>
 
-    @foreach ($todos as $todo)
-        <hr>
-        <p>
-            {{ $todo->todo }}
-            <a href="{{ route('todo.delete', ['id' => $todo->id]) }}" class="btn btn-danger">x</a>
-            <a href="{{ route('todo.edit', ['id' => $todo->id]) }}" class="btn btn-info">Update</a>
-        </p>
-    @endforeach
+    <div class="row">
+        @foreach ($todos as $todo)
+            <hr class="col-sm-12">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <p class="{{ $todo->completed ? 'completed' : '' }}">{{ $todo->todo }}</p>
+            </div>
+            <div class="col-sm-4">
+                @if (!$todo->completed)
+                    <a href="{{ route('todo.markcompleted', ['id' => $todo->id]) }}" class="btn btn-success">Mark as Completed</a>
+                @else
+                    <a href="{{ route('todo.marknotcompleted', ['id' => $todo->id]) }}" class="btn btn-warning">Mark as Not Completed</a>
+                @endif
+                <a href="{{ route('todo.edit', ['id' => $todo->id]) }}" class="btn btn-info">Update</a>
+                <a href="{{ route('todo.delete', ['id' => $todo->id]) }}" class="btn btn-danger">x</a>
+            </div>
+        @endforeach
+    </div>
 @endsection

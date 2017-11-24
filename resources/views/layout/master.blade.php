@@ -24,8 +24,11 @@
         }
 
         .col-centered{
-            float: none;
             margin: 0 auto;
+        }
+
+        .completed {
+            text-decoration: line-through;
         }
     </style>
 </head>

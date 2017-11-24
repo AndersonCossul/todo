@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTodo;
 use App\Models\Todo;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class TodoController extends Controller
 {
     public function index()
     {
-        $todos = Todo::all()->sortByDesc('updated_at');
+        $todos = Todo::all()->sortByDesc('created_at');
         return view('todos')->with('todos', $todos);
     }
 
@@ -50,6 +51,36 @@ class TodoController extends Controller
 
         } catch (ModelNotFoundException $e) {
             session()->flash('error', 'Todo not found!');
+            return redirect()->back();
+        }
+    }
+
+    public function markAsCompleted($id)
+    {
+        try {
+            $todo = Todo::findOrFail($id);
+            $todo->completed = 1;
+            $todo->save();
+
+            session()->flash('success', 'Marked as completed!');
+        } catch (ModelNotFoundException $e) {
+            session()->flash('error', 'Todo not found!');
+        } finally {
+            return redirect()->back();
+        }
+    }
+
+    public function markAsNotCompleted($id)
+    {
+        try {
+            $todo = Todo::findOrFail($id);
+            $todo->completed = 0;
+            $todo->save();
+
+            session()->flash('success', 'Marked as completed!');
+        } catch (ModelNotFoundException $e) {
+            session()->flash('error', 'Todo not found!');
+        } finally {
             return redirect()->back();
         }
     }
