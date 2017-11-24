@@ -9,23 +9,21 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todos = Todo::all()->sortByDesc('created_at');
+        $todos = Todo::all()->sortByDesc('updated_at');
         return view('todos')->with('todos', $todos);
     }
 
     public function store(StoreTodo $request)
     {
         // it will just fall here if the validation passed in StoreTodo
-        $todo = new Todo;
-        $todo->todo = $request->todo;
-        $todo->save();
+        $todo = Todo::create($request->all());
 
         session()->put('success', 'Successfully created!');
 
         return redirect()->back();
     }
 
-    public function getUpdate($id)
+    public function edit($id)
     {
         try {
             $todo = Todo::findOrFail($id);
@@ -37,7 +35,7 @@ class TodoController extends Controller
         }
     }
 
-    public function postUpdate(StoreTodo $request, $id)
+    public function update(StoreTodo $request, $id)
     {
         // again using custom request validation in StoreTodo
         try {
@@ -56,7 +54,7 @@ class TodoController extends Controller
         }
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         try {
             $todo = Todo::findOrFail($id);
